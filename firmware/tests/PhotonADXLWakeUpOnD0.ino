@@ -1,12 +1,12 @@
 #include "Particle.h"
-​
+
 SYSTEM_MODE(SEMI_AUTOMATIC);
 STARTUP(System.enableFeature(FEATURE_RESET_INFO));
 STARTUP(System.enableFeature(FEATURE_RETAINED_MEMORY));
-​
+
 void setup() {
     switch(System.resetReason()) {
-        case RESET_REASON_PANIC: 
+        case RESET_REASON_PANIC:
             System.enterSafeMode();
             break;
         default:
@@ -16,9 +16,9 @@ void setup() {
        System.enterSafeMode();
    }
 }
-​
+
 long movement = 0;
-​
+
 void loop() {
 	if(!Particle.connected()) {
 	    Particle.connect();
