@@ -4,7 +4,7 @@ FuelGauge fuel;
 time_t lastSentTimeStamp = 0;
 time_t lastSentSerialTimeStamp = 0;
 time_t lastBatteryStateSentTimeStamp = 0;
-time_t batteryTimeInterval = 5 * 60 * 1000;
+time_t batteryTimeInterval = 10 * 60 * 1000;
 time_t debounceTimeInMilliseconds = 10000;
 time_t serialDebounceTimeInMilliseconds = 100;
 time_t mainLoopDelay = 100;
@@ -15,9 +15,19 @@ time_t timeoutForZeroEventInMilliseconds = 10000;
 
 double analogResolution = 4096.0;
 double supplyVoltage = 3.3;
-double stateOfCharge = 0;
-double voltsPerG = 0.36;
-double gravityOffsetInG = 1.1;
+double stateOfCharge = 0.0;
+double maximalMeasuredAbsoluteAccelerationInG = 5.0;
+double voltsPerG = supplyVoltage / (maximalMeasuredAbsoluteAccelerationInG * 2.0);
+double gravityOffsetInG = 1.0;
+
+double x = 0.0;
+double y = 0.0;
+double z = 0.0;
+
+double xValueForOneG = 0.0;
+double yValueForOneG = 0.0;
+double zValueForOneG = 0.0;
+
 double thresholdInG = 0.10;
 double absoluteAccelerationInG = 0.0;
 double maxAbsoluteOvershootValueSinceSendingG = 0.0;
@@ -33,6 +43,9 @@ void setup() {
 
     Particle.variable("voltsPerG", voltsPerG);
     Particle.variable("gravOffsetG", gravityOffsetInG);
+    Particle.variable("x", x);
+    Particle.variable("y", y);
+    Particle.variable("z", z);
     Particle.variable("loopDelay", mainLoopDelay);
     Particle.variable("publishDelay", debounceTimeInMilliseconds);
     Particle.variable("lastMovedAt", lastOvershootTime);
@@ -54,7 +67,10 @@ void loop() {
 
     time_t now = millis();
 
-    double z = accelerationMeasuredOnPin(A0);
+    x = accelerationMeasuredOnPin(A0);
+    y = accelerationMeasuredOnPin(A1);
+    z = accelerationMeasuredOnPin(A2);
+    
     absoluteAccelerationInG = fabs(z - gravityOffsetInG);
     double accelerationInG = z - gravityOffsetInG;
 
@@ -71,19 +87,18 @@ void loop() {
     }
 
     bool hasOvershotSinceSending = lastOvershootTime > lastSentTimeStamp;
-    bool hasTimedOut = lastSentTimeStamp - now > timeoutForZeroEventInMilliseconds;
+    bool hasTimedOut = (now - lastSentTimeStamp) > timeoutForZeroEventInMilliseconds;
 
     if (hasTimedOut) {
+        Particle.publish("noAccel", String((now - lastSentTimeStamp) / 1000), 3600, PRIVATE);
         timeoutForZeroEventInMilliseconds *= 2;
-        Particle.publish("timeout", "", 3600, PRIVATE);
     }
 
-    if (isReadyForNextEvent && (hasOvershotSinceSending || hasTimedOut)) {
-        Serial.print("Sending maxAccel ");
+    if (isReadyForNextEvent && hasOvershotSinceSending) {
+        Serial.print("Sending maximal acceleration since last sent maxAccel event");
         Serial.println(maxAbsoluteOvershootValueSinceSendingG);
-        Particle.publish("maxAccel", String(maxAbsoluteOvershootValueSinceSendingG), 3600, PRIVATE);
+        Particle.publish("maxAccelAbs", String(maxAbsoluteOvershootValueSinceSendingG), 3600, PRIVATE);
         Particle.publish("maxAccelR", String(maxOvershootValueSinceSendingG), 3600, PRIVATE);
-        // Particle.publish("when", String(lastOvershootTime), 3600, PRIVATE);
         lastSentTimeStamp = now;
         maxAbsoluteOvershootValueSinceSendingG = 0.0;
     }
