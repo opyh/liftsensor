@@ -1126,6 +1126,211 @@ Warning: This is the KIT version of this package. This package has a smaller dia
 </deviceset>
 </devicesets>
 </library>
+<library name="SparkFun-Connectors" urn="urn:adsk.eagle:library:513">
+<description>&lt;h3&gt;SparkFun Connectors&lt;/h3&gt;
+This library contains electrically-functional connectors. 
+&lt;br&gt;
+&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
+&lt;br&gt;
+&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
+&lt;br&gt;
+&lt;br&gt;
+You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<packages>
+<package name="PAD.02X.02" urn="urn:adsk.eagle:footprint:37959/1" library_version="1">
+<description>&lt;h3&gt;Electrically Conductive Pad 0.02" Square&lt;/h3&gt;
+Used as a test point connection for pogo pins or other debugging tools. 
+&lt;p&gt;Specifications:
+&lt;li&gt;Area: 0.02" x 0.02"&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;TEST_POINT&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<smd name="P$1" x="0" y="0" dx="0.508" dy="0.508" layer="1"/>
+</package>
+<package name="PAD.03X.03" urn="urn:adsk.eagle:footprint:37960/1" library_version="1">
+<description>&lt;h3&gt;Electrically Conductive Pad 0.03" Circle&lt;/h3&gt;
+Used as a test point connection for pogo pins or other debugging tools. 
+&lt;p&gt;Specifications:
+&lt;li&gt;Area: 0.03" x 0.03"&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;TEST_POINT&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<smd name="P$1" x="0" y="0" dx="0.762" dy="0.762" layer="1" roundness="100" cream="no"/>
+</package>
+<package name="PAD.03X.05" urn="urn:adsk.eagle:footprint:37961/1" library_version="1">
+<description>&lt;h3&gt;Electrically Conductive Pad 0.05" Circle&lt;/h3&gt;
+Used as a test point connection for pogo pins or other debugging tools. 
+&lt;p&gt;Specifications:
+&lt;li&gt;Area: 0.05" x 0.05"&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;TEST_POINT&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<smd name="P$1" x="0" y="0" dx="1.27" dy="1.27" layer="1" roundness="100" cream="no"/>
+</package>
+<package name="PAD.03X.04" urn="urn:adsk.eagle:footprint:37962/1" library_version="1">
+<description>&lt;h3&gt;Electrically Conductive Pad 0.04" Circle&lt;/h3&gt;
+Used as a test point connection for pogo pins or other debugging tools. 
+&lt;p&gt;Specifications:
+&lt;li&gt;Area: 0.04" x 0.04"&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;TEST_POINT&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<smd name="P$1" x="0" y="0" dx="1.016" dy="1.016" layer="1" roundness="100" cream="no"/>
+</package>
+<package name="TP_15TH" urn="urn:adsk.eagle:footprint:37963/1" library_version="1">
+<description>&lt;h3&gt;Electrically Conductive Via 0.015" Drill&lt;/h3&gt;
+Used as a test point connection for pogo pins or other debugging tools. 
+&lt;p&gt;Specifications:
+&lt;li&gt;Area:0.015"&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;TEST_POINT&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<pad name="P$1" x="0" y="0" drill="0.381" diameter="0.6096" stop="no"/>
+<circle x="0" y="0" radius="0.381" width="0" layer="30"/>
+</package>
+</packages>
+<packages3d>
+<package3d name="PAD.02X.02" urn="urn:adsk.eagle:package:38284/1" type="box" library_version="1">
+<description>Electrically Conductive Pad 0.02" Square
+Used as a test point connection for pogo pins or other debugging tools. 
+Specifications:
+Area: 0.02" x 0.02"
+
+Example device(s):
+TEST_POINT
+</description>
+</package3d>
+<package3d name="PAD.03X.03" urn="urn:adsk.eagle:package:38286/1" type="box" library_version="1">
+<description>Electrically Conductive Pad 0.03" Circle
+Used as a test point connection for pogo pins or other debugging tools. 
+Specifications:
+Area: 0.03" x 0.03"
+
+Example device(s):
+TEST_POINT
+</description>
+</package3d>
+<package3d name="PAD.03X.05" urn="urn:adsk.eagle:package:38285/1" type="box" library_version="1">
+<description>Electrically Conductive Pad 0.05" Circle
+Used as a test point connection for pogo pins or other debugging tools. 
+Specifications:
+Area: 0.05" x 0.05"
+
+Example device(s):
+TEST_POINT
+</description>
+</package3d>
+<package3d name="PAD.03X.04" urn="urn:adsk.eagle:package:38287/1" type="box" library_version="1">
+<description>Electrically Conductive Pad 0.04" Circle
+Used as a test point connection for pogo pins or other debugging tools. 
+Specifications:
+Area: 0.04" x 0.04"
+
+Example device(s):
+TEST_POINT
+</description>
+</package3d>
+<package3d name="TP_15TH" urn="urn:adsk.eagle:package:38288/1" type="box" library_version="1">
+<description>Electrically Conductive Via 0.015" Drill
+Used as a test point connection for pogo pins or other debugging tools. 
+Specifications:
+Area:0.015"
+
+Example device(s):
+TEST_POINT
+</description>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="TEST-POINT" urn="urn:adsk.eagle:symbol:37958/1" library_version="1">
+<wire x1="2.54" y1="0" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="3.302" y1="0.762" x2="3.302" y2="-0.762" width="0.1524" layer="94" curve="180"/>
+<text x="-2.54" y="2.54" size="1.778" layer="95" font="vector">&gt;Name</text>
+<text x="-2.54" y="-2.54" size="1.778" layer="96" font="vector">&gt;Value</text>
+<pin name="1" x="0" y="0" visible="off" length="point" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="TEST-POINT" urn="urn:adsk.eagle:component:38391/1" prefix="TP" library_version="1">
+<description>&lt;h3&gt;SparkFun Test Points&lt;/h3&gt;
+&lt;p&gt;Bare copper test points for troubleshooting or In-Circuit-Testing. These are used by our Production team for verifying production board runs using pogo-pins on test beds.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;SparkFun Products:&lt;/b&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=”https://www.sparkfun.com/products/13284”&gt;SparkFun LSM9DS1 Breakout&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=”https://www.sparkfun.com/products/13714”&gt;SparkFun PSOC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/13879"&gt;SparkFun Load Cell Amplifier&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<gates>
+<gate name="G$1" symbol="TEST-POINT" x="0" y="0"/>
+</gates>
+<devices>
+<device name="2" package="PAD.02X.02">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:38284/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3" package="PAD.03X.03">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:38286/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3X5" package="PAD.03X.05">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:38285/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3X4" package="PAD.03X.04">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:38287/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="TP_15TH_THRU" package="TP_15TH">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:38288/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1153,6 +1358,15 @@ Warning: This is the KIT version of this package. This package has a smaller dia
 <part name="C2" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="0.1UF" device="-0402-16V-10%" package3d_urn="urn:adsk.eagle:package:37413/1" value="0.1uF"/>
 <part name="C3" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="0.1UF" device="-0402-16V-10%" package3d_urn="urn:adsk.eagle:package:37413/1" value="0.1uF"/>
 <part name="C4" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="0.1UF" device="-0402-16V-10%" package3d_urn="urn:adsk.eagle:package:37413/1" value="0.1uF"/>
+<part name="GND8" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
+<part name="SUPPLY4" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="VCC_2" device=""/>
+<part name="TP1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="TEST-POINT" device="3" package3d_urn="urn:adsk.eagle:package:38286/1"/>
+<part name="TP2" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="TEST-POINT" device="3" package3d_urn="urn:adsk.eagle:package:38286/1"/>
+<part name="TP3" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="TEST-POINT" device="3" package3d_urn="urn:adsk.eagle:package:38286/1"/>
+<part name="TP4" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="TEST-POINT" device="3" package3d_urn="urn:adsk.eagle:package:38286/1"/>
+<part name="TP5" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="TEST-POINT" device="3" package3d_urn="urn:adsk.eagle:package:38286/1"/>
+<part name="TP6" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="TEST-POINT" device="3" package3d_urn="urn:adsk.eagle:package:38286/1"/>
+<part name="TP7" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="TEST-POINT" device="3" package3d_urn="urn:adsk.eagle:package:38286/1"/>
 </parts>
 <sheets>
 <sheet>
@@ -1160,22 +1374,31 @@ Warning: This is the KIT version of this package. This package has a smaller dia
 </plain>
 <instances>
 <instance part="EL" gate="G$1" x="35.56" y="40.64"/>
-<instance part="U1" gate="G$1" x="-22.86" y="30.48"/>
-<instance part="GND1" gate="1" x="-7.62" y="50.8" rot="R180"/>
-<instance part="GND2" gate="1" x="-2.54" y="50.8" rot="R180"/>
+<instance part="U1" gate="G$1" x="-27.94" y="30.48"/>
+<instance part="GND1" gate="1" x="-12.7" y="50.8" rot="R180"/>
+<instance part="GND2" gate="1" x="-5.08" y="50.8" rot="R180"/>
 <instance part="GND3" gate="1" x="2.54" y="50.8" rot="R180"/>
 <instance part="GND4" gate="1" x="-60.96" y="53.34" rot="R180"/>
 <instance part="GND5" gate="1" x="68.58" y="71.12"/>
-<instance part="GND6" gate="1" x="7.62" y="81.28"/>
-<instance part="GND7" gate="1" x="-35.56" y="10.16"/>
+<instance part="GND6" gate="1" x="5.08" y="76.2"/>
+<instance part="GND7" gate="1" x="-40.64" y="10.16"/>
 <instance part="SUPPLY1" gate="G$1" x="-60.96" y="43.18" rot="R180"/>
-<instance part="SUPPLY2" gate="G$1" x="-35.56" y="50.8"/>
+<instance part="SUPPLY2" gate="G$1" x="-40.64" y="50.8"/>
 <instance part="SUPPLY3" gate="G$1" x="68.58" y="83.82"/>
 <instance part="JP1" gate="G$1" x="88.9" y="78.74" rot="R180"/>
-<instance part="C1" gate="G$1" x="-7.62" y="43.18"/>
-<instance part="C2" gate="G$1" x="-2.54" y="43.18"/>
+<instance part="C1" gate="G$1" x="-12.7" y="43.18"/>
+<instance part="C2" gate="G$1" x="-5.08" y="43.18"/>
 <instance part="C3" gate="G$1" x="2.54" y="43.18"/>
 <instance part="C4" gate="G$1" x="-60.96" y="45.72"/>
+<instance part="GND8" gate="1" x="81.28" y="55.88" rot="R180"/>
+<instance part="SUPPLY4" gate="G$1" x="81.28" y="43.18"/>
+<instance part="TP1" gate="G$1" x="88.9" y="53.34"/>
+<instance part="TP2" gate="G$1" x="88.9" y="43.18"/>
+<instance part="TP3" gate="G$1" x="88.9" y="27.94"/>
+<instance part="TP4" gate="G$1" x="88.9" y="17.78"/>
+<instance part="TP5" gate="G$1" x="88.9" y="7.62"/>
+<instance part="TP6" gate="G$1" x="88.9" y="-7.62"/>
+<instance part="TP7" gate="G$1" x="88.9" y="-17.78"/>
 </instances>
 <busses>
 </busses>
@@ -1184,7 +1407,7 @@ Warning: This is the KIT version of this package. This package has a smaller dia
 <segment>
 <pinref part="GND6" gate="1" pin="GND"/>
 <pinref part="EL" gate="G$1" pin="GND@2"/>
-<wire x1="7.62" y1="83.82" x2="17.78" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="78.74" x2="17.78" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND5" gate="1" pin="GND"/>
@@ -1214,16 +1437,21 @@ Warning: This is the KIT version of this package. This package has a smaller dia
 <segment>
 <pinref part="GND7" gate="1" pin="GND"/>
 <pinref part="U1" gate="G$1" pin="COM@7"/>
-<wire x1="-35.56" y1="12.7" x2="-35.56" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="12.7" x2="-40.64" y2="22.86" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="COM@6"/>
-<wire x1="-35.56" y1="22.86" x2="-35.56" y2="25.4" width="0.1524" layer="91"/>
-<junction x="-35.56" y="22.86"/>
+<wire x1="-40.64" y1="22.86" x2="-40.64" y2="25.4" width="0.1524" layer="91"/>
+<junction x="-40.64" y="22.86"/>
 <pinref part="U1" gate="G$1" pin="COM@5"/>
-<wire x1="-35.56" y1="25.4" x2="-35.56" y2="27.94" width="0.1524" layer="91"/>
-<junction x="-35.56" y="25.4"/>
+<wire x1="-40.64" y1="25.4" x2="-40.64" y2="27.94" width="0.1524" layer="91"/>
+<junction x="-40.64" y="25.4"/>
 <pinref part="U1" gate="G$1" pin="COM@3"/>
-<wire x1="-35.56" y1="27.94" x2="-35.56" y2="30.48" width="0.1524" layer="91"/>
-<junction x="-35.56" y="27.94"/>
+<wire x1="-40.64" y1="27.94" x2="-40.64" y2="30.48" width="0.1524" layer="91"/>
+<junction x="-40.64" y="27.94"/>
+</segment>
+<segment>
+<pinref part="GND8" gate="1" pin="GND"/>
+<pinref part="TP1" gate="G$1" pin="1"/>
+<wire x1="81.28" y1="53.34" x2="88.9" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC_2" class="0">
@@ -1234,34 +1462,44 @@ Warning: This is the KIT version of this package. This package has a smaller dia
 <segment>
 <pinref part="U1" gate="G$1" pin="VS@14"/>
 <pinref part="U1" gate="G$1" pin="VS@15"/>
-<wire x1="-35.56" y1="35.56" x2="-35.56" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="35.56" x2="-40.64" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="SUPPLY2" gate="G$1" pin="VCC_2"/>
-<wire x1="-35.56" y1="38.1" x2="-35.56" y2="50.8" width="0.1524" layer="91"/>
-<junction x="-35.56" y="38.1"/>
+<wire x1="-40.64" y1="38.1" x2="-40.64" y2="50.8" width="0.1524" layer="91"/>
+<junction x="-40.64" y="38.1"/>
 </segment>
 <segment>
 <pinref part="EL" gate="G$1" pin="3V3"/>
 <pinref part="SUPPLY3" gate="G$1" pin="VCC_2"/>
 <wire x1="53.34" y1="83.82" x2="68.58" y2="83.82" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="SUPPLY4" gate="G$1" pin="VCC_2"/>
+<wire x1="88.9" y1="43.18" x2="81.28" y2="43.18" width="0.1524" layer="91"/>
+<pinref part="TP2" gate="G$1" pin="1"/>
+</segment>
 </net>
-<net name="N$2" class="0">
+<net name="A1" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="YOUT"/>
 <pinref part="EL" gate="G$1" pin="A1"/>
 <wire x1="17.78" y1="33.02" x2="15.24" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="15.24" y1="35.56" x2="-2.54" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="15.24" y1="35.56" x2="-5.08" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="2"/>
-<wire x1="-2.54" y1="35.56" x2="-10.16" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="-2.54" y1="40.64" x2="-2.54" y2="35.56" width="0.1524" layer="91"/>
-<junction x="-2.54" y="35.56"/>
+<wire x1="-5.08" y1="35.56" x2="-15.24" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="-5.08" y1="40.64" x2="-5.08" y2="35.56" width="0.1524" layer="91"/>
+<junction x="-5.08" y="35.56"/>
+</segment>
+<segment>
+<wire x1="88.9" y1="17.78" x2="81.28" y2="17.78" width="0.1524" layer="91"/>
+<label x="78.74" y="20.32" size="1.778" layer="95"/>
+<pinref part="TP4" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$3" class="0">
+<net name="A2" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="ZOUT"/>
 <wire x1="5.08" y1="33.02" x2="2.54" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="2.54" y1="33.02" x2="-10.16" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="33.02" x2="-15.24" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="5.08" y1="33.02" x2="10.16" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="EL" gate="G$1" pin="A2"/>
 <wire x1="10.16" y1="38.1" x2="17.78" y2="38.1" width="0.1524" layer="91"/>
@@ -1269,26 +1507,58 @@ Warning: This is the KIT version of this package. This package has a smaller dia
 <wire x1="2.54" y1="40.64" x2="2.54" y2="33.02" width="0.1524" layer="91"/>
 <junction x="2.54" y="33.02"/>
 </segment>
+<segment>
+<wire x1="88.9" y1="7.62" x2="81.28" y2="7.62" width="0.1524" layer="91"/>
+<label x="78.74" y="10.16" size="1.778" layer="95"/>
+<pinref part="TP5" gate="G$1" pin="1"/>
+</segment>
 </net>
-<net name="N$5" class="0">
+<net name="A0" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="XOUT"/>
-<wire x1="-10.16" y1="38.1" x2="-7.62" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="-7.62" y1="38.1" x2="5.08" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="-15.24" y1="38.1" x2="-12.7" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="-12.7" y1="38.1" x2="5.08" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="5.08" y1="38.1" x2="15.24" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="EL" gate="G$1" pin="A0"/>
 <wire x1="15.24" y1="27.94" x2="17.78" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="-7.62" y1="40.64" x2="-7.62" y2="38.1" width="0.1524" layer="91"/>
-<junction x="-7.62" y="38.1"/>
+<wire x1="-12.7" y1="40.64" x2="-12.7" y2="38.1" width="0.1524" layer="91"/>
+<junction x="-12.7" y="38.1"/>
+</segment>
+<segment>
+<wire x1="88.9" y1="27.94" x2="81.28" y2="27.94" width="0.1524" layer="91"/>
+<label x="78.74" y="30.48" size="1.778" layer="95"/>
+<pinref part="TP3" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$1" class="0">
+<net name="VBAT" class="0">
 <segment>
 <pinref part="EL" gate="G$1" pin="VBAT"/>
 <wire x1="53.34" y1="73.66" x2="68.58" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="JP1" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="78.74" x2="68.58" y2="78.74" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="RX" class="0">
+<segment>
+<pinref part="EL" gate="G$1" pin="RX"/>
+<wire x1="17.78" y1="68.58" x2="15.24" y2="68.58" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="88.9" y1="-7.62" x2="81.28" y2="-7.62" width="0.1524" layer="91"/>
+<label x="78.74" y="-5.08" size="1.778" layer="95"/>
+<pinref part="TP6" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="TX" class="0">
+<segment>
+<pinref part="EL" gate="G$1" pin="TX"/>
+<wire x1="17.78" y1="73.66" x2="15.24" y2="73.66" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="88.9" y1="-17.78" x2="81.28" y2="-17.78" width="0.1524" layer="91"/>
+<label x="78.74" y="-15.24" size="1.778" layer="95"/>
+<pinref part="TP7" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>

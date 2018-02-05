@@ -67,10 +67,10 @@ void loop() {
 
     time_t now = millis();
 
-    x = accelerationMeasuredOnPin(A0);
+    x = accelerationMeasuredOnPin(A2);
     y = accelerationMeasuredOnPin(A1);
-    z = accelerationMeasuredOnPin(A2);
-    
+    z = accelerationMeasuredOnPin(A0);
+
     absoluteAccelerationInG = fabs(z - gravityOffsetInG);
     double accelerationInG = z - gravityOffsetInG;
 
