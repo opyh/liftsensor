@@ -1,0 +1,73 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile",
+            "type": "shell",
+            "command": "po electron build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "echo": true,
+                "panel": "new"
+            },
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*?):(\\d+):(\\d+):\\s+(warning|error|fatal error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                },
+                "severity": "error"
+            }
+        },
+        {
+            "label": "Flash via USB",
+            "type": "shell",
+            "command": "kill `fuser -f /dev/cu.usbmodem1411`; po electron flash",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "focus": false,
+                "echo": true,
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Flash via USB and open serial monitor",
+            "type": "shell",
+            "command": "kill `fuser -f /dev/cu.usbmodem1411`; po electron flash && sleep 3 && po serial monitor",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "focus": false,
+                "echo": true,
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Kill tasks that block the serial port",
+            "type": "shell",
+            "command": "kill `fuser -f /dev/cu.usbmodem1411`",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "focus": false,
+                "echo": true,
+                "panel": "dedicated"
+            }
+        }
+    ]
+}

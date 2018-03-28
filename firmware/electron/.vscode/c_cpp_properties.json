@@ -1,0 +1,126 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1",
+                "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1/tr1",
+                "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1/arm-none-eabi",
+                "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include",
+
+                "~/.po-util/src/particle/firmware/bootloader/inc",
+                "~/.po-util/src/particle/firmware/bootloader/src",
+                "~/.po-util/src/particle/firmware/communication/inc",
+                "~/.po-util/src/particle/firmware/communication/src",
+                "~/.po-util/src/particle/firmware/dynalib/inc",
+                "~/.po-util/src/particle/firmware/dynalib/src",
+                "~/.po-util/src/particle/firmware/hal/inc",
+                "~/.po-util/src/particle/firmware/hal/src",
+                "~/.po-util/src/particle/firmware/hal/src/newhal",
+                "~/.po-util/src/particle/firmware/hal/shared",
+                "~/.po-util/src/particle/firmware/main/inc",
+                "~/.po-util/src/particle/firmware/main/src",
+                "~/.po-util/src/particle/firmware/modules/inc",
+                "~/.po-util/src/particle/firmware/modules/src",
+                "~/.po-util/src/particle/firmware/platform/inc",
+                "~/.po-util/src/particle/firmware/platform/src",
+                "~/.po-util/src/particle/firmware/platform/shared/inc",
+                "~/.po-util/src/particle/firmware/services/inc",
+                "~/.po-util/src/particle/firmware/services/src",
+                "~/.po-util/src/particle/firmware/system/inc",
+                "~/.po-util/src/particle/firmware/system/src",
+                "~/.po-util/src/particle/firmware/wiring/inc",
+                "~/.po-util/src/particle/firmware/wiring/src",
+                "~/.po-util/src/particle/firmware/user/inc",
+                "~/.po-util/src/particle/firmware/user/src",
+
+                "${workspaceRoot}"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1",
+                    "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1/tr1",
+                    "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1/arm-none-eabi",
+                    "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include",
+
+                    "~/.po-util/src/particle/firmware/bootloader/inc",
+                    "~/.po-util/src/particle/firmware/bootloader/src",
+                    "~/.po-util/src/particle/firmware/communication/inc",
+                    "~/.po-util/src/particle/firmware/communication/src",
+                    "~/.po-util/src/particle/firmware/dynalib/inc",
+                    "~/.po-util/src/particle/firmware/dynalib/src",
+                    "~/.po-util/src/particle/firmware/hal/inc",
+                    "~/.po-util/src/particle/firmware/hal/src",
+                    "~/.po-util/src/particle/firmware/hal/src/newhal",
+                    "~/.po-util/src/particle/firmware/hal/shared",
+                    "~/.po-util/src/particle/firmware/main/inc",
+                    "~/.po-util/src/particle/firmware/main/src",
+                    "~/.po-util/src/particle/firmware/modules/inc",
+                    "~/.po-util/src/particle/firmware/modules/src",
+                    "~/.po-util/src/particle/firmware/platform/inc",
+                    "~/.po-util/src/particle/firmware/platform/src",
+                    "~/.po-util/src/particle/firmware/platform/shared/inc",
+                    "~/.po-util/src/particle/firmware/services/inc",
+                    "~/.po-util/src/particle/firmware/services/src",
+                    "~/.po-util/src/particle/firmware/system/inc",
+                    "~/.po-util/src/particle/firmware/system/src",
+                    "~/.po-util/src/particle/firmware/wiring/inc",
+                    "~/.po-util/src/particle/firmware/wiring/src",
+                    "~/.po-util/src/particle/firmware/user/inc",
+                    "~/.po-util/src/particle/firmware/user/src",
+
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ]
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include",
+                "/usr/local/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 3
+}
