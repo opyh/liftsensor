@@ -7,7 +7,6 @@
                 "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1/tr1",
                 "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1/arm-none-eabi",
                 "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include",
-
                 "~/.po-util/src/particle/firmware/bootloader/inc",
                 "~/.po-util/src/particle/firmware/bootloader/src",
                 "~/.po-util/src/particle/firmware/communication/inc",
@@ -33,7 +32,6 @@
                 "~/.po-util/src/particle/firmware/wiring/src",
                 "~/.po-util/src/particle/firmware/user/inc",
                 "~/.po-util/src/particle/firmware/user/src",
-
                 "${workspaceRoot}"
             ],
             "defines": [],
@@ -44,7 +42,6 @@
                     "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1/tr1",
                     "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include/c++/5.3.1/arm-none-eabi",
                     "/usr/local/Cellar/gcc-arm-none-eabi-53/20160330/arm-none-eabi/include",
-
                     "~/.po-util/src/particle/firmware/bootloader/inc",
                     "~/.po-util/src/particle/firmware/bootloader/src",
                     "~/.po-util/src/particle/firmware/communication/inc",
@@ -70,7 +67,6 @@
                     "~/.po-util/src/particle/firmware/wiring/src",
                     "~/.po-util/src/particle/firmware/user/inc",
                     "~/.po-util/src/particle/firmware/user/src",
-
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
@@ -79,7 +75,10 @@
             "macFrameworkPath": [
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"
-            ]
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Linux",

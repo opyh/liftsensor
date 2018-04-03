@@ -13,6 +13,7 @@
             },
             "presentation": {
                 "reveal": "always",
+                "focus": true,
                 "echo": true,
                 "panel": "new"
             },
@@ -36,7 +37,7 @@
         {
             "label": "Flash via USB",
             "type": "shell",
-            "command": "kill `fuser -f /dev/cu.usbmodem1411`; po electron flash",
+            "command": "kill `fuser -f /dev/cu.usbmodem*`; po electron flash",
             "group": "test",
             "presentation": {
                 "reveal": "always",
@@ -48,11 +49,23 @@
         {
             "label": "Flash via USB and open serial monitor",
             "type": "shell",
-            "command": "kill `fuser -f /dev/cu.usbmodem1411`; po electron flash && sleep 3 && po serial monitor",
+            "command": "kill `fuser -f /dev/cu.usbmodem*`; po electron flash && sleep 3 && po serial monitor",
             "group": "test",
             "presentation": {
                 "reveal": "always",
-                "focus": false,
+                "focus": true,
+                "echo": true,
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Open serial monitor",
+            "type": "shell",
+            "command": "kill `fuser -f /dev/cu.usbmodem*`; po serial monitor",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
                 "echo": true,
                 "panel": "dedicated"
             }
@@ -60,7 +73,7 @@
         {
             "label": "Kill tasks that block the serial port",
             "type": "shell",
-            "command": "kill `fuser -f /dev/cu.usbmodem1411`",
+            "command": "kill `fuser -f /dev/cu.usbmodem*`",
             "group": "test",
             "presentation": {
                 "reveal": "always",

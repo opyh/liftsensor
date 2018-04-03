@@ -4,6 +4,7 @@
         "cstdlib": "cpp",
         "functional": "cpp",
         "array": "cpp",
-        "initializer_list": "cpp"
+        "initializer_list": "cpp",
+        "*.tcc": "cpp"
     }
 }
