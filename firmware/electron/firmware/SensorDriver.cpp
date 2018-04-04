@@ -9,9 +9,7 @@
 // }
 
 
-SensorDriver::SensorDriver() :
-	StateMachine(StateElevatorStopped, "Sensor")
-{
+SensorDriver::SensorDriver() {
 }
 
 
@@ -26,32 +24,31 @@ double SensorDriver::accelerationFromPinValue(size_t axisIndex, int pinValue) {
 }
 
 
-double SensorDriver::getAccelerationInG() {
-    return accelerationInG;
+double SensorDriver::getDCFilteredSpeed() {
+    return smoothenedFilteredAccumulatedSpeeds[0];
 }
 
-
-bool SensorDriver::isOverThreshold() {
-    return fabs((float) accelerationInG) > ThresholdInG;
+bool SensorDriver::isOverSpeedThreshold() {
+    return fabs((float) getDCFilteredSpeed()) > SpeedThreshold;
 }
 
 
 void SensorDriver::setupParticleCloud() {
     Particle.variable("voltsPerG", VoltsPerG);
     Particle.variable("gravOffsetG", GravityOffsetInG);
-    Particle.variable("x", averagedAxisValues[0]);
-    Particle.variable("y", averagedAxisValues[1]);
-    Particle.variable("z", averagedAxisValues[2]);
+    Particle.variable("x", smoothenedAccelerations[0]);
+    Particle.variable("y", smoothenedAccelerations[1]);
+    Particle.variable("z", smoothenedAccelerations[2]);
     Particle.variable("g", accelerationInG);
-    Particle.variable("lastMovedAt", lastOvershootTime);
 }
 
 
 void SensorDriver::setupFirstAverageValue() {
     measure();
     for (size_t i = 0; i < NUMBER_OF_AXES; i++) {
-        averagedAxisValues[i] = axisValues[i];
+        smoothenedAccelerations[i] = accelerations[i];
     }
+    smoothenedAccelerationInG = accelerationInG;
 }
 
 
@@ -65,9 +62,33 @@ void SensorDriver::init() {
 
 void SensorDriver::measureOneAxis(size_t index, int pin) {
     pinValues[index] = analogRead(pin);
-    axisValues[index] = accelerationFromPinValue(index, pinValues[index]);
-    averagedAxisValues[index] =        ExponentialAverageAlpha  * axisValues[index] +
-                        (1.0 - ExponentialAverageAlpha) * averagedAxisValues[index];
+    accelerations[index] = accelerationFromPinValue(index, pinValues[index]);
+    smoothenedAccelerations[index] =
+        ExponentialAverageAlpha * accelerations[index] +
+        (1.0 - ExponentialAverageAlpha) * smoothenedAccelerations[index];
+
+    // 1. Accumulating past acceleration values to calculate speed. Filter out gravity first using
+    // a DC bias filter
+
+    dcFilteredSpeeds[index] += accelerations[index] - smoothenedAccelerations[index];
+
+    // 2. average signal to remove high-frequency noise. Without this, a sudden movement like a
+    // train passing nearby or an entering passenger could cause an overshoot event.
+
+    smoothenedDCFilteredSpeeds[index] =
+        ExponentialAverageAlpha * dcFilteredSpeeds[index] +
+        (1.0 - ExponentialAverageAlpha) * smoothenedDCFilteredSpeeds[index];
+
+    // 3. The signal still has a DC bias. Remove it.
+
+    dcFilteredAveragedDCFilteredSpeeds[index] = dcFilteredSpeeds[index] - smoothenedDCFilteredSpeeds[index];
+
+    // 4. Another low-pass filter to remove jitter.
+
+    smoothenedFilteredAccumulatedSpeeds[index] =
+            ExponentialAverageAlpha * dcFilteredAveragedDCFilteredSpeeds[index] +
+        (1.0 - ExponentialAverageAlpha) * smoothenedFilteredAccumulatedSpeeds[index];
+
 }
 
 
@@ -80,68 +101,29 @@ void SensorDriver::measure() {
 
 void SensorDriver::process(time_t now) {
     measure();
+    printStatus();
+}
 
-    // For the first prototype PCB, the real z pin would be on A2, but the z line is broken.
-    // so we use A0 = x axis for debugging instead. Turn the device on the side for this.
-    // axisValues[2] = accelerationFromPinValue(analogRead(A0));
-    // int axisIndex = 2;
-    // accelerationInG = averagedAxisValues[axisIndex] - GravityOffsetInG;
-
-    // Simple DC filtering to remove earth gravity bias
-    double x = axisValues[0] - averagedAxisValues[0];
-    double y = axisValues[1] - averagedAxisValues[1];
-    double z = axisValues[2] - averagedAxisValues[2];
-
-    accelerationInG = z;
-
-    // Alternative: Calculate length of the 3D vector to use all axes.
-    // This is a bit more error prone and might cause overshoots when people enter/leave the
-    // elevator:
-    // accelerationInG = sqrt(
-    //     pow(x, 2.0) +
-    //     pow(y, 2.0) +
-    //     pow(z, 2.0)
-    // );
+void SensorDriver::printStatus() {
+    // Debouncing
+    auto now = millis();
+    if (now - lastPrintTime < 200) return;
+    lastPrintTime = now;
 
     for (size_t i = 0; i < NUMBER_OF_AXES; i++) {
         Serial.printf(
             "%c %.2fV %+.2fg %+.2fg %+.2fg  │  ",
             'x' + i,
             voltageFromPinValue(pinValues[i]),
-            axisValues[i],
-            averagedAxisValues[i],
-            axisValues[i] - averagedAxisValues[i]
+            accelerations[i],
+            smoothenedAccelerations[i],
+            accelerations[i] - smoothenedAccelerations[i]
         );
     }
 
     Serial.printlnf(
-        "  filtered %+.2fg",
-        accelerationInG
+        " -> v = %+.2f / %+.2f",
+        dcFilteredAveragedDCFilteredSpeeds[2],
+        smoothenedFilteredAccumulatedSpeeds[2]
     );
-}
-
-
-void SensorDriver::processState() {
-
-}
-
-
-void SensorDriver::enterState() {
-
-}
-
-
-void SensorDriver::exitState() {
-
-}
-
-
-const char *SensorDriver::nameForState(SensorDriverState state) {
-    switch(state) {
-        case StateCalibrating: return "calibrating";
-	    case StateElevatorStopped: return "elevator stopped";
-	    case StateElevatorGoingUp: return "elevator going up";
-        case StateElevatorGoingDown: return "elevator going down";
-    }
-    return "Unknown state";
 }

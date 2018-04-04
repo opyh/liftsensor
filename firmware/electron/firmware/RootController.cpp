@@ -13,12 +13,13 @@ int locate(String args)
 }
 
 
-RootController::RootController(Battery &_battery, SensorDriver &_sensorDriver)
+RootController::RootController(Battery &_battery, SensorDriver &_sensorDriver, NetworkDriver &_networkDriver)
 :
 	StateMachine(StateConnecting, "Core"),
 	lastError(NULL),
 	battery(_battery),
-	sensorDriver(_sensorDriver)
+	sensorDriver(_sensorDriver),
+	networkDriver(_networkDriver)
 {
 
 }
@@ -32,6 +33,7 @@ void RootController::init()
 	Serial.println("!");
 	Particle.function("locate", locate);
 	sensorDriver.init();
+	networkDriver.init();
 	battery.init();
     Particle.variable("curTimeoutMs", intervalForInactivityEventMs);
 }
@@ -42,6 +44,7 @@ void RootController::process()
 	StateMachine::process();
 	time_t now = millis();
 	sensorDriver.process(now);
+	networkDriver.process(now);
     battery.process(now);
 }
 
@@ -68,12 +71,12 @@ void RootController::processState()
 			setStateAfter(StateWaitingForOvershot, 500);
 			break;
 		case StateInactive:
+			if (sensorDriver.isOverSpeedThreshold()) setState(StateMeasuringPaused);
 			// Exponential backoff
-			setStateAfter(StateSendingCellularDiagnostics, intervalForInactivityEventMs);
-			reactToOvershootEvents();
+			setStateAfter(StateInactive, intervalForInactivityEventMs);
 			break;
 		case StateWaitingForOvershot:
-			reactToOvershootEvents();
+			if (sensorDriver.isOverSpeedThreshold()) setState(StateMeasuringPaused);
 			setStateAfter(StateInactive, IntervalForDetectingInactivityMs);
 			break;
 		case StateMeasuringPaused:
@@ -85,14 +88,6 @@ void RootController::processState()
 	}
 }
 
-
-void RootController::reactToOvershootEvents() {
-	if (sensorDriver.isOverThreshold()) {
-		lastOvershootTime = millis();
-		sendOvershootEvent(lastOvershootTime);
-		setState(StateMeasuringPaused);
-	}
-}
 
 void RootController::enterState()
 {
@@ -115,14 +110,15 @@ void RootController::enterState()
 		case StateWaitingForOvershot:
 			break;
 		case StateMeasuringPaused:
+			sendOvershootEvent();
 		    intervalForInactivityEventMs = FirstIntervalForInactivityEventMs;
 			break;
 		case StateInactive:
-		    Particle.publish("noAccel", "", 3600, PRIVATE);
-	        intervalForInactivityEventMs *= 2;
-			Serial.print("[Core] Doubled interval for inactivity events to ");
+		    networkDriver.enqueueEvent("inactiveS", String(int(0.001 * (millis() - intervalForInactivityEventMs))));
+	        intervalForInactivityEventMs *= ExponentialBackoffFactorForInactivityEvent;
+			Serial.print("[Core] Increased interval for inactivity events to ");
 			printTime(Serial, intervalForInactivityEventMs);
-			Serial.println("s");
+			Serial.println();
 			break;
 		case StateError:
 			intervalForErrorEventMs *= 2;
@@ -178,16 +174,15 @@ void RootController::sendCurrentStateEvent()
 {
 	const char *stateString = nameForState(state);
 	Particle.variable("state", stateString, STRING);
-	Particle.publish("diag/lastState", stateString, 120, PRIVATE);
+	Particle.publish("diag/lastState", stateString, 3600, PRIVATE);
 }
 
 
-void RootController::sendOvershootEvent(time_t now) {
-	Serial.print("\n\nSending maximal acceleration since last sent maxAccel event: ");
-	const auto accelerationInG = sensorDriver.getAccelerationInG();
-	Serial.println(accelerationInG, DEC);
+void RootController::sendOvershootEvent() {
+	Serial.print("\nSpeed threshold exceeded, sending event with speed ");
+	const auto speed = sensorDriver.getDCFilteredSpeed();
+	Serial.println(speed, DEC);
 	Serial.println();
-	Particle.publish("accelR", String(accelerationInG), 3600, PRIVATE);
-	lastSentTimeStamp = now;
+	networkDriver.enqueueEvent("speed", String(speed));
 }
 
