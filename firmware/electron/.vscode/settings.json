@@ -1,5 +1,9 @@
 {
+    "extensions.ignoreRecommendations": true,
+    "C_Cpp.default.configurationProvider": "particle.particle-vscode-core",
+    "cortex-debug.openocdPath": "${command:particle.getDebuggerOpenocdPath}",
     "files.associations": {
+        "*.ino": "cpp",
         "chrono": "cpp",
         "cstdlib": "cpp",
         "functional": "cpp",
@@ -7,5 +11,8 @@
         "initializer_list": "cpp",
         "*.tcc": "cpp",
         "typeinfo": "cpp"
-    }
+        },
+    "particle.targetDevice": "ubirch-device",
+    "particle.firmwareVersion": "1.4.4",
+    "particle.targetPlatform": "electron"
 }
