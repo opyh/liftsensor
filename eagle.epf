@@ -409,5 +409,10 @@ UsedLibraryUrn="urn:adsk.eagle:library:176"
 UsedLibraryUrn="urn:adsk.eagle:library:177"
 UsedLibrary="/Applications/EAGLE-8.5.1/lbr/Particle-Devices.lbr"
 
+[Win_1]
+Type="Control Panel"
+Number=0
+
 [Desktop]
-Screen="640 480"
+Screen="2560 2490"
+Window="Win_1"
