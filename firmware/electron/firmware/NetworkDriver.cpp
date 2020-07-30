@@ -81,7 +81,7 @@ void NetworkDriver::processEventQueue() {
     }
     if (Particle.publish(event.name, event.data, 3600, PRIVATE)) {
         eventQueue.pop();
-        Serial.printlnf("[Net] published event '%s' (data: %s).", event.name.c_str(), event.data.c_str());
+        Serial.printlnf("\r\n[Net] published event '%s' (data: %s).", event.name.c_str(), event.data.c_str());
     }
 };
 
@@ -92,5 +92,5 @@ void NetworkDriver::enqueueEvent(String name, String data, system_tick_t ttl) {
         eventQueue.pop();
     }
     eventQueue.push(event);
-    Serial.printlnf("[Net] Enqueued event '%s' (data: %s).", name.c_str(), data.c_str());
+    Serial.printlnf("\r\n[Net] Enqueued event '%s' (data: %s).", name.c_str(), data.c_str());
 }

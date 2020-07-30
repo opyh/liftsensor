@@ -2,6 +2,7 @@
 #include "math.h"
 #include "Diagnostics.h"
 #include "TimeUtil.h"
+#include "Settings.h"
 
 bool locationRequested = false;
 
@@ -10,6 +11,11 @@ int locate(String args)
 {
 	locationRequested = true;
 	return 1;
+}
+
+int sendNetworkRegistrationStatus(String args) {
+	Diagnostics::sendNetworkRegistrationStatus();
+	return 0;
 }
 
 
@@ -27,15 +33,17 @@ RootController::RootController(Battery &_battery, SensorDriver &_sensorDriver, N
 
 void RootController::init()
 {
-	Serial.println("\n\n\n\n\n[Core] Initializing magic... ✨ ");
+	delay(3000);
+	Serial.println("\r\n\n\n\n\n[Core] Initializing magic... ✨ ");
 	Serial.print("[Core] Hello, I am ");
 	Serial.print(Particle.deviceID());
 	Serial.println("!");
 	Particle.function("locate", locate);
+	Particle.function("net", sendNetworkRegistrationStatus);
+	Settings::setupEEPROMFunctions();
 	sensorDriver.init();
 	networkDriver.init();
 	battery.init();
-    Particle.variable("curTimeoutMs", intervalForInactivityEventMs);
 }
 
 
@@ -62,9 +70,6 @@ void RootController::processState()
 	switch (state)
 	{
 		case StateConnecting:
-			setStateAfter(StateSendingVersionDiagnostics, 500);
-			break;
-		case StateSendingVersionDiagnostics:
 			setStateAfter(StateSendingCellularDiagnostics, 500);
 			break;
 		case StateSendingCellularDiagnostics:
@@ -76,7 +81,9 @@ void RootController::processState()
 			setStateAfter(StateInactive, intervalForInactivityEventMs);
 			break;
 		case StateWaitingForOvershot:
-			if (sensorDriver.isOverSpeedThreshold()) setState(StateMeasuringPaused);
+			if (sensorDriver.isOverSpeedThreshold()) {
+				setState(StateMeasuringPaused);
+			}
 			setStateAfter(StateInactive, IntervalForDetectingInactivityMs);
 			break;
 		case StateMeasuringPaused:
@@ -98,38 +105,49 @@ void RootController::enterState()
 
 	switch (state)
 	{
-		case StateSendingVersionDiagnostics:
-			Diagnostics::sendVersionDiagnostics();
-			break;
 		case StateSendingCellularDiagnostics:
 			Diagnostics::sendCellularDiagnostics();
-			Diagnostics::sendNetworkRegistrationStatus();
 			break;
 		case StateLocating:
+			// startLocating();
 			break;
 		case StateWaitingForOvershot:
+			sensorDriver.setupFirstAverageValue();
 			break;
 		case StateMeasuringPaused:
 			sendOvershootEvent();
 		    intervalForInactivityEventMs = FirstIntervalForInactivityEventMs;
 			break;
-		case StateInactive:
-		    networkDriver.enqueueEvent("inactiveS", String(int(0.001 * (millis() - intervalForInactivityEventMs))));
+		case StateInactive: {
+			const auto &settings = Settings::getFromEEPROM();
+			String data = String::format(
+				"{\"v\":0,\"s\":\"%s\",\"e\":\"%s\",\"t\":\"%s\",\"d\":%d}",
+				settings.sourceId,
+				settings.equipmentInfoId,
+				settings.token,
+				lastActivityMs ? int(0.001 * (millis() - lastActivityMs)) : -1
+			);
+			networkDriver.enqueueEvent("speed", data);
+
+
 	        intervalForInactivityEventMs *= ExponentialBackoffFactorForInactivityEvent;
-			Serial.print("[Core] Increased interval for inactivity events to ");
+			Serial.print("\r\n[Core] Increased interval for inactivity events to ");
 			printTime(Serial, intervalForInactivityEventMs);
 			Serial.println();
+		    Particle.variable("timeoutMs", intervalForInactivityEventMs);
+
 			break;
+		}
 		case StateError:
 			intervalForErrorEventMs *= 2;
 			if (lastError)
 			{
-				Serial.print("[Core] Last error: ");
+				Serial.print("\r\n[Core] Last error: ");
 				Serial.print(lastError);
 			}
 			else
 			{
-				Serial.print("[Core] Unknown error.");
+				Serial.print("\r\n[Core] Unknown error.");
 			}
 			break;
 	}
@@ -141,7 +159,6 @@ void RootController::exitState()
 	switch (state)
 	{
 		case StateConnecting: break;
-		case StateSendingVersionDiagnostics: break;
     	case StateSendingCellularDiagnostics: break;
 		case StateLocating: break;
 		case StateWaitingForOvershot: break;
@@ -157,7 +174,6 @@ const char *RootController::nameForState(RootControllerState state)
 	switch (state)
 	{
 		case StateConnecting: return "connecting to server";
-		case StateSendingVersionDiagnostics: return "sending version";
 		case StateSendingCellularDiagnostics: return "sending cellular info";
 		case StateLocating: return "locating";
 		case StateWaitingForOvershot: return "waiting for overshot";
@@ -179,10 +195,18 @@ void RootController::sendCurrentStateEvent()
 
 
 void RootController::sendOvershootEvent() {
-	Serial.print("\nSpeed threshold exceeded, sending event with speed ");
+	lastActivityMs = millis();
 	const auto speed = sensorDriver.getDCFilteredSpeed();
-	Serial.println(speed, DEC);
-	Serial.println();
-	networkDriver.enqueueEvent("speed", String(speed));
+	Serial.printlnf("\r\nSpeed threshold exceeded at %d, sending event with speed %0.4f", lastActivityMs, speed);
+
+	const auto &settings = Settings::getFromEEPROM();
+	String data = String::format(
+		"{\"v\":%0.4f,\"s\":\"%s\",\"e\":\"%s\",\"t\":\"%s\",\"w\":true,\"d\":0}",
+		speed,
+		settings.sourceId,
+		settings.equipmentInfoId,
+		settings.token
+	);
+	networkDriver.enqueueEvent("speed", data);
 }
 

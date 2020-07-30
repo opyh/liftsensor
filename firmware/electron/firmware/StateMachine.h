@@ -79,7 +79,7 @@ protected:
 			}
 			else
 			{
-				Serial.print("\n");
+				Serial.print("\r\n");
 				Serial.print(logPrefix);
 				Serial.print(" \033[37;1m");
 				Serial.println(nameForState(nextState));

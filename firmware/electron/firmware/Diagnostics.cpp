@@ -1,30 +1,29 @@
 #include "Diagnostics.h"
 #include "Particle.h"
-// #include <string>
 
 namespace Diagnostics {
 
     int networkRegistrationStatusCallback(int type, const char *buf, int len, char *status) {
-        // Serial.printlnf("Network registration status = %s\r\n", buf);
+
         if ((type == TYPE_PLUS) && status)
         {
-            if (sscanf(buf, "\r\n+COPS: %[^\r]\r\n", status) == 1)
-                /*nothing*/;
+            // Serial.printlnf("Network registration status = %s\r\n", buf);
+            if (sscanf(buf, "\r\n+COPS: %[^\r]\r\n", status) == 1) {}
         }
         return WAIT;
     }
 
     void sendNetworkRegistrationStatus() {
-        Serial.printlnf("Checking network registration status...");
+        Serial.printlnf("\r\nChecking network registration status...");
         // AT+COPS? +COPS: 0,0,"vodafone IT",2
         char status[32] = "";
-        if ((RESP_OK == Cellular.command(networkRegistrationStatusCallback, status, 10000, "AT+COPS?\r\n")) && (strcmp(status, "") != 0))
+        if ((RESP_OK == Cellular.command(networkRegistrationStatusCallback, status, 20000, "AT+COPS?\r\n")) && (strcmp(status, "") != 0))
         {
             Particle.publish("diag/net", status, 3600, PRIVATE);
         }
         else
         {
-            Serial.println("Could not get network registration status.");
+            Serial.println("\r\nCould not get network registration status.");
         }
     }
 
@@ -49,12 +48,4 @@ namespace Diagnostics {
         snprintf(qualString, 5, "%d", sig.qual);
         Particle.publish("diag/qual", qualString, 3600, PRIVATE);
     }
-
-
-    void sendVersionDiagnostics()
-    {
-        Particle.publish("diag/firmware", "1.0.0", 120, PRIVATE);
-        Particle.publish("diag/hardware", "1.0.0", 120, PRIVATE);
-    }
-
 }

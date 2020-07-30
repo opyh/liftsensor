@@ -16,6 +16,7 @@ public:
 
     bool isOverSpeedThreshold();
     double getDCFilteredSpeed();
+    void setupFirstAverageValue();
 
 private:
     // Values from data sheet:
@@ -39,18 +40,17 @@ private:
     double dcFilteredAveragedDCFilteredSpeeds[NUMBER_OF_AXES] = { 0, 0, 0 };
     double smoothenedFilteredAccumulatedSpeeds[NUMBER_OF_AXES] = { 0, 0, 0 };
 
-    double accelerationInG = 0.0;
-    double smoothenedAccelerationInG = 0.0;
+    double maxSpeed = 0;
 
     time_t lastPrintTime = 0;
 
     void measure();
     void measureOneAxis(size_t index, int pin);
-    void setupParticleCloud();
-    void setupFirstAverageValue();
+    void setCloudVariables();
     double voltageFromPinValue(int pinValue);
     double accelerationFromPinValue(size_t axisIndex, int pinValue);
     void printStatus();
+    void updateMaxSpeed();
 };
 
 #endif

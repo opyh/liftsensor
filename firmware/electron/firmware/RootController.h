@@ -9,7 +9,6 @@
 
 typedef enum {
 	StateConnecting,
-	StateSendingVersionDiagnostics,
 	StateSendingCellularDiagnostics,
 	StateWaitingForOvershot,
 	StateMeasuringPaused,
@@ -44,6 +43,7 @@ private:
 	const int ExponentialBackoffFactorForInactivityEvent = 2;
 	time_t intervalForInactivityEventMs = FirstIntervalForInactivityEventMs;
 	time_t intervalForErrorEventMs = 15000;
+	time_t lastActivityMs = 0;
 
 	Battery &battery;
 	SensorDriver &sensorDriver;

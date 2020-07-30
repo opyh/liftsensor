@@ -4,7 +4,6 @@
 namespace Diagnostics {
 	void sendNetworkRegistrationStatus();
 	void sendCellularDiagnostics();
-	void sendVersionDiagnostics();
 }
 
 #endif

@@ -20,6 +20,8 @@ struct NetworkDriverEvent {
 
 class NetworkDriver : StateMachine<NetworkDriverState>, Driver {
 public:
+    static const system_tick_t DefaultTTL;
+
     NetworkDriver();
     void init();
     void process(time_t now);
@@ -30,7 +32,7 @@ public:
 	const char *nameForState(NetworkDriverState state);
 
     void processEventQueue();
-    void enqueueEvent(String name, String data, system_tick_t ttl = 10 * 60 * 1000);
+    void enqueueEvent(String name, String data, system_tick_t ttl = DefaultTTL);
     std::queue<NetworkDriverEvent> eventQueue;
     Timer publishInterval;
 
