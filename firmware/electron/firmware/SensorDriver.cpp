@@ -117,7 +117,7 @@ void SensorDriver::process(time_t now) {
 void SensorDriver::printStatus() {
     // Debouncing
     auto now = millis();
-    if (now - lastPrintTime < 200) return;
+    if (now - lastPrintTime < 500) return;
     lastPrintTime = now;
 
     Serial.printf("\r");

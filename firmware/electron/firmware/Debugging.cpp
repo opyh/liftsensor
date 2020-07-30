@@ -49,11 +49,11 @@ namespace Debugging {
 
 // Various settings for how long to wait before rebooting and so forth
 const unsigned long LISTEN_WAIT_FOR_REBOOT = 30000; // milliseconds, 0 = don't reboot on entering listening mode
-const unsigned long CLOUD_WAIT_FOR_REBOOT = 180000; // milliseconds, 0 = don't reboot
+const unsigned long CLOUD_WAIT_FOR_REBOOT = 300000; // milliseconds, 0 = don't reboot
 const unsigned long PUBLISH_RATE_LIMIT = 1010; // milliseconds; to avoid sending events too rapidly
-const unsigned long PING_TIMEOUT = 30000; // milliseconds
-const unsigned long APP_WATCHDOG_TIMEOUT = 60000; // milliseconds
-const uint8_t NUM_REBOOTS_BEFORE_RESETTING_MODEM = 2; //
+const unsigned long PING_TIMEOUT = 180000; // milliseconds
+const unsigned long APP_WATCHDOG_TIMEOUT = 300000; // milliseconds
+const uint8_t NUM_REBOOTS_BEFORE_RESETTING_MODEM = 3; //
 const size_t MAX_TESTERFN_ARGS = 5; // Used to split out arguments to testerFn Particle.function
 const int SLEEP_TEST_PIN = D2; // Used for testing sleep with pin modes
 

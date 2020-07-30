@@ -4,9 +4,11 @@
 #include "NetworkDriver.h"
 
 
+const system_tick_t NetworkDriver::DefaultTTL = 10 * 60 * 1000;
+
 NetworkDriver::NetworkDriver() :
 	StateMachine(StateOffline, "Net"),
-    publishInterval(1000, &NetworkDriver::processEventQueue, *this, false)
+    publishInterval(500, &NetworkDriver::processEventQueue, *this, false)
 {
 }
 

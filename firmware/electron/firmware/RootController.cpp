@@ -73,7 +73,7 @@ void RootController::processState()
 			setStateAfter(StateSendingCellularDiagnostics, 500);
 			break;
 		case StateSendingCellularDiagnostics:
-			setStateAfter(StateWaitingForOvershot, 500);
+			setStateAfter(StateWaitingForOvershot, 5000);
 			break;
 		case StateInactive:
 			if (sensorDriver.isOverSpeedThreshold()) setState(StateMeasuringPaused);
