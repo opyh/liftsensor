@@ -19,6 +19,7 @@ void setup() {
     Serial.begin(115200);
     Debugging::setup();
     Particle.variable("loopDelay", mainLoopDelay);
+    rootController.init();
 }
 
 
