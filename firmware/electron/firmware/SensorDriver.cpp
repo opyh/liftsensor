@@ -25,7 +25,7 @@ double SensorDriver::accelerationFromPinValue(size_t axisIndex, int pinValue) {
 
 
 double SensorDriver::getDCFilteredSpeed() {
-    return smoothenedFilteredAccumulatedSpeeds[0];
+    return smoothenedFilteredAccumulatedSpeeds[2];
 }
 
 bool SensorDriver::isOverSpeedThreshold() {
