@@ -9,7 +9,10 @@
 
 const time_t mainLoopDelay = 10;
 
+PRODUCT_ID(7299);
+PRODUCT_VERSION(3);
 
+// PMIC().disableCharging();
 Battery battery = Battery();
 SensorDriver sensorDriver = SensorDriver();
 NetworkDriver networkDriver = NetworkDriver();
